@@ -1,0 +1,438 @@
+<section class="content">    
+		<!-- Basic Examples -->
+		<div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header tblMenu barDropdownToggle" >
+						<ul class="header-dropdown" style="top: 10px;">
+							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" id="expander" title="最大化する"> <i class="material-icons" style="font-size: 16pt; color: #FFFFFF;">expand_more</i>
+							</a></li>
+						</ul>
+						<h2>
+							<span style="color: white">タスク入力フォーム</span>
+						</h2>
+          </div>
+          <!-- <div class="body" id="search_body" style="display: none;"> -->
+					<div class="body" id="search_body" style="display: none;">
+              <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td class="tblMenu col-lg-1">番号（No.）</td>
+                      <td colspan="2">{{tasksNo}}</td>
+                      <td class="tblMenu col-lg-1">作成日</td>
+                      <td colspan="2">{{ now | date | slice:0:-6 }}</td>
+                    </tr>
+                    <tr>
+                      <td class="tblMenu">
+                        <span color="red">タイトル<b>【必須】</b></span>
+                        <div class="help-info" style="font-size: 10px;">最大○○文字</div>
+                      </td>
+                      <td colspan="4">
+                        <div class="form-group" style="margin-bottom: 0;margin-top: 10px;">
+                          <div class="form-line">
+                            <!-- <input type="text" class="form-control no-resize auto-growth" placeholder="タイトルを入力"> -->
+                            <input type="text" [(ngModel)]="title" class="form-control no-resize auto-growth" placeholder="タイトルを入力" required>
+                          </div>  
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tblMenu">
+                        詳細内容
+                        <div class="help-info" style="font-size: 10px;">最大○○○文字</div>
+                      </td>
+                      <td colspan="4">
+                        <div class="form-group" style="margin-bottom: 0;">
+                          <div class="form-line">
+                            <textarea autosize type="text" [(ngModel)]="description" class="form-control no-resize auto-growth" placeholder="詳細内容を入力" required></textarea>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tblMenu">重要度</td>
+                      <td colspan="2">
+                        <div id="priority" class="btn-group">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            未選択 <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> <span class="fa fa-caret-down"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0);">未選択</a></li>
+                            <li><a href="javascript:void(0);">高</a></li>
+                            <li><a href="javascript:void(0);">中</a></li>
+                            <li><a href="javascript:void(0);">低</a></li>
+                          </ul>
+                        </div>
+                      </td>
+                      <td class="tblMenu">作業状況</td>
+                      <td colspan="2">
+                        <div id="state" class="btn-group">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            未選択 <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> <span class="fa fa-caret-down"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0);">未選択</a></li>
+                            <li><a href="javascript:void(0);">開始前</a></li>
+                            <li><a href="javascript:void(0);">作業中</a></li>
+                            <li><a href="javascript:void(0);">作業完了</a></li>
+                          </ul>
+                        </div>
+                    </tr>
+                    <tr>
+                      <td class="tblMenu">
+                        期限
+                        <div class="help-info" style="font-size: 10px;">yyyy/MM/dd HH24:mm形式</div>
+                      </td>
+                      <td colspan="2">
+                        <div class="form-group" style="margin-bottom: 0;">
+                          <div class="form-line" style="display: inline-block;">
+                            <input type="text" [(ngModel)]="deadline" id="deadline" class="datetimepicker form-control" placeholder="期限を入力" style="float: left; width: 95%" />
+                            <div class="datetimepicker-trigger" style="float: right; cursor: hand; cursor: pointer;">
+                              <i class="material-icons">event</i> <span class="icon-name"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="tblMenu">
+                        開始日時
+                        <div class="help-info" style="font-size: 10px;">yyyy/MM/dd HH24:mm形式</div>
+                      </td>
+                      <td colspan="2">
+                        <div class="form-group" style="margin-bottom: 0;">
+                          <div class="form-line" style="display: inline-block;">
+                            <input type="text" id="startdate" class="datetimepicker form-control" placeholder="開始日時を入力" style="float: left; width: 95%" />
+                            <div class="datetimepicker-trigger" style="float: right; cursor: hand; cursor: pointer;">
+                              <i class="material-icons">event</i> <span class="icon-name"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tblMenu">
+                        <span color="red">作成者<b>【必須】</b></span>
+                      </td>
+                      <td colspan="2">{{userdata.displayName}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+						<div class="dt_buttons" style="padding-bottom: 30px;">
+							<span style="float: right; padding-right: 20px;">
+								<button (click)="addtask()" type="submit" class="btn btn-bg waves-effect" style="min-width: 80px;" [disabled]="isDisabled()" title=タイトルを入力してください。>追加</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="body">
+						<div></div>
+            <table id="datatables" class="table table-bordered table-striped table-hover js-basic-tasks dataTable">
+							<thead>
+								<tr class="tblMenu">
+									<th *ngFor="let Item of TableColItems">{{ Item }}</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr class="tblMenu">
+									<th *ngFor="let Item of TableColItems">{{ Item }}</th>
+								</tr>
+							</tfoot>
+							<!-- <tbody>
+								<tr *ngFor="let data of TableDateList;let i = index">
+									<th>{{data.No}}</th>
+									<th>
+										<ng-container *ngIf="SetNew(i)">
+											<span class="badge bg-blue">New</span>
+										</ng-container>
+                    <a href="javascript:void(0);" [title]="data.title">{{data.title}}</a>
+									</th>
+									<th>{{data.priority}}</th>
+									<th>{{data.deadline}}</th>
+									<th>{{data.startdate}}</th>
+                  <th>{{data.state}}</th>
+                  <ng-container *ngIf="i!=2; else isedit">
+                    <th><i class="material-icons" data-target="#registerModal" data-toggle="modal" style="cursor: pointer;" (click)="EditTask(i)">edit</i></th>
+                  </ng-container>
+                  <ng-template #isedit>
+                    <th><i>○○さんが編集中しています。</i></th>
+                  </ng-template>
+								</tr>
+							</tbody> -->
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- ==================================================================================================================================== -->
+    
+    <section>
+      <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header tblMenu" style="padding: 15px 15px 5px 15px;">
+                  <ul class="header-dropdown" style="float: right; margin-bottom: 0;">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                      <i class="material-icons" style="font-size: 16pt; color: #FFFFFF;" title="閉じる" data-dismiss="modal">close</i>
+                    </a>
+                  </ul>
+                  <h4 class="modal-title" id="largeModalLabel" style="margin-bottom: 10px;">
+                    <span style="color: white;">タスク詳細内容</span>
+                  </h4>
+                </div>
+                <div class="modal-body">
+                  <table style="border: none; width: 100%;">
+                    <tbody>
+                      <tr>
+                        <td style="vertical-align: top;">
+                          <div class="card">
+                            <div class="body">
+                              <div class="dt_buttons" style="padding-bottom: 10px;">
+                                <button type="button" class="btn btn-bg waves-effect" style="width:80px;margin-right: 3px !important;" data-target="#registerModal" data-toggle="modal" (click)="toEdit()">編集</button>
+                                <button type="button" class="btn btn-bg waves-effect" style="width:80px;" (click)="remove()">削除</button>
+                                <span style="float: right; padding-right: 20px;">
+          <!-- 															<button type="button" class="btn btn-bg waves-effect" style="width: 80px;" data-dismiss="modal">閉じる</button> -->
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="body" id="search_body">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                      <tr>
+                                        <td class="tblMenu col-lg-1">番号（No.）</td>
+                                        <td colspan="2">{{edit_No}}</td>
+                                        <td class="tblMenu col-lg-1">作成日時</td>
+                                        <td colspan="2">{{edit_creatdate | date }}</td>
+                                      </tr>
+                                      <tr>
+                                        <td class="tblMenu">
+                                          <span color="red">タイトル</span>
+                                        </td>
+                                        <td colspan="4">
+                                            <span color="red"><b>{{edit_title}}</b></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="tblMenu">
+                                          詳細内容
+                                        </td>
+                                        <td colspan="4">
+                                          <pre style="background-color: white;
+                                            border: none;
+                                            margin: 0;
+                                            font-family: 'Roboto', Arial, Tahoma, sans-serif;
+                                            white-space: pre-wrap ;">{{edit_description}}</pre>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="tblMenu">重要度</td>
+                                        <td colspan="2">
+                                          <div id="edit-priority" class="btn-group">
+                                            <button type="button" class="btn btn-default" style="cursor: default;">
+                                               {{edit_priority}}
+                                            </button>
+                                          </div>
+                                        </td>
+                                        <td class="tblMenu">作業状況</td>
+                                        <td colspan="2">
+                                          <div id="edit-state" class="btn-group">
+                                            <button type="button" class="btn btn-default" style="cursor: default;"> 
+                                              {{edit_state}}
+                                            </button>
+                                          </div>
+                                      </tr>
+                                      <tr>
+                                        <td class="tblMenu">
+                                          期限
+                                        </td>
+                                        <td colspan="2">
+                                          {{edit_deadline}}
+                                        </td>
+                                        <td class="tblMenu">
+                                          開始日時
+                                        </td>
+                                        <td colspan="2">
+                                          {{edit_startdate}}
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="tblMenu">
+                                          <span color="red">作成者</span>
+                                        </td>
+                                        <td colspan="2">
+                                          {{edit_author}}
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+  </section>
+
+
+
+
+    <section>
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header tblMenu" style="padding: 15px 15px 5px 15px;">
+                    <ul class="header-dropdown" style="float: right; margin-bottom: 0;">
+                      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons" style="font-size: 16pt; color: #FFFFFF;" title="閉じる" data-dismiss="modal">close</i>
+                      </a>
+                    </ul>
+                    <h4 class="modal-title" id="largeModalLabel" style="margin-bottom: 10px;">
+                      <span style="color: white;">タスク編集</span>
+                    </h4>
+                  </div>
+                  <div class="modal-body">
+                    <table style="border: none; width: 100%;">
+                      <tbody>
+                        <tr>
+                          <td style="vertical-align: top;">
+                            <div class="card">
+                              <div class="body">
+                                <div class="dt_buttons" style="padding-bottom: 10px;">
+                                  <button type="button" class="btn btn-bg waves-effect" style="width:80px;margin-right: 3px;" (click)="edit()">保存</button>
+                                  <button type="button" class="btn btn-bg waves-effect" style="width:80px;" (click)="remove()">削除</button>
+                                  <span style="float: right; padding-right: 20px;">
+            <!-- 															<button type="button" class="btn btn-bg waves-effect" style="width: 80px;" data-dismiss="modal">閉じる</button> -->
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="body" id="search_body">
+                                  <table class="table table-bordered">
+                                      <tbody>
+                                        <tr>
+                                          <td class="tblMenu col-lg-1">番号（No.）</td>
+                                          <td colspan="2">{{edit_No}}</td>
+                                          <td class="tblMenu col-lg-1">作成日時</td>
+                                          <td colspan="2">{{edit_creatdate | date }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td class="tblMenu">
+                                            <span color="red">タイトル<b>【必須】</b></span>
+                                            <div class="help-info" style="font-size: 10px;">最大○○文字</div>
+                                          </td>
+                                          <td colspan="4">
+                                            <div class="form-group" style="margin-bottom: 0;margin-top: 10px;">
+                                              <div class="form-line">
+                                                <input id="txtAreaTitle" class="form-control no-resize auto-growth" placeholder="タイトルを入力" [(ngModel)]="edit_title">
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="tblMenu">
+                                            詳細内容
+                                            <div class="help-info" style="font-size: 10px;">最大○○○文字</div>
+                                          </td>
+                                          <td colspan="4">
+                                            <div class="form-group" style="margin-bottom: 0;">
+                                              <div class="form-line">
+                                                <textarea class="form-control no-resize auto-growth" placeholder="詳細内容を入力" [(ngModel)]="edit_description"></textarea>
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="tblMenu">重要度</td>
+                                          <td colspan="2">
+                                            <div id="edit-priority" class="btn-group">
+                                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                 <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> <span class="fa fa-caret-down"></span>
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0);">未選択</a></li>
+                                                <li><a href="javascript:void(0);">高</a></li>
+                                                <li><a href="javascript:void(0);">中</a></li>
+                                                <li><a href="javascript:void(0);">低</a></li>
+                                              </ul>
+                                            </div>
+                                          </td>
+                                          <td class="tblMenu">作業状況</td>
+                                          <td colspan="2">
+                                            <div id="edit-state" class="btn-group">
+                                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
+                                                 <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span> <span class="fa fa-caret-down"></span>
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0);">未選択</a></li>
+                                                <li><a href="javascript:void(0);">開始前</a></li>
+                                                <li><a href="javascript:void(0);">作業中</a></li>
+                                                <li><a href="javascript:void(0);">作業完了</a></li>
+                                              </ul>
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                          <td class="tblMenu">
+                                            期限
+                                            <div class="help-info" style="font-size: 10px;">yyyy/MM/dd HH24:mm形式</div>
+                                          </td>
+                                          <td colspan="2">
+                                            <div class="form-group" style="margin-bottom: 0;">
+                                              <div class="form-line" style="display: inline-block;">
+                                                <input type="text" id="edit-deadline" class="datetimepicker form-control" [value]="edit_deadline" placeholder="期限を入力" style="float: left; width: 95%" />
+                                                <div class="datetimepicker-trigger" style="float: right; cursor: hand; cursor: pointer;">
+                                                  <i class="material-icons">event</i> <span class="icon-name"></span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          <td class="tblMenu">
+                                            開始日時
+                                            <div class="help-info" style="font-size: 10px;">yyyy/MM/dd HH24:mm形式</div>
+                                          </td>
+                                          <td colspan="2">
+                                            <div class="form-group" style="margin-bottom: 0;">
+                                              <div class="form-line" style="display: inline-block;">
+                                                <input type="text" id="edit-startdate" class="datetimepicker form-control" [value]="edit_startdate" placeholder="開始日時を入力" style="float: left; width: 95%" />
+                                                <div class="datetimepicker-trigger" style="float: right; cursor: hand; cursor: pointer;">
+                                                  <i class="material-icons">event</i> <span class="icon-name"></span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="tblMenu">
+                                            <span color="red">作成者<b>【必須】</b></span>
+                                          </td>
+                                          <td colspan="2">
+                                            <div class="form-group" style="margin-bottom: 0;">
+                                              <div class="form-line">
+                                                <input type="text" id="edit-regist_org" class="form-control" [(ngModel)]="edit_author" placeholder="ログイン情報から取得予定">
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+		</section>
+	</section>
+
+

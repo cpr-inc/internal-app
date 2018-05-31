@@ -1,0 +1,26 @@
+<section class="content" style="height: 200px;">
+  <div class="welcome">
+    <div id="theme-color" class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">CPR社内ツール</h1>
+        <p class="w-100" [hidden]="!show">
+          <button class="btn btn-default" (click)=ShowFrom()>ログイン</button>
+        </p>
+
+        <div class="container" *ngIf="!show" style="padding: 0 20vw;">
+          <form #f="ngForm" (ngSubmit)="login(f)">
+            <div class="form-group">
+              <input type="email" ngModel name="email" class="form-control" placeholder="メールアドレスを入力" required autofocus>
+            </div>
+            <div class="form-group">
+              <input type="password" ngModel name="password" class="form-control" placeholder="パスワードを入力" required>
+            </div>
+            <button class="btn btn-lg text-dark" type="submit" style="color: black !important">ログイン</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+.modal .form-group {
+	width: 100%;
+	margin-bottom: 0px;
+}
+
+th.alert-red {
+	background-color: red;
+	color: white;
+}
+
+th.alert-yellow {
+	background-color: yellow;
+	color: black;
+}
+
+th.alert-mazenda {
+	background-color: magenta;
+	color: white;
+}
+
+th.alert-blue-grey {
+	background-color: #607D8B;
+	color: white;
+}
+
+th.bg-deep-orange {
+	background-color: #FFCC33;
+	color: black;
+}
+
+span.ft-small {
+	font-size: 9pt;
+}
+
+.bg-grad-purple {
+	background: linear-gradient(93deg, #8015e8, #36333a) !important;
+	background-size: 400% 400% !important;
+}
+
+.swal-modal{
+    font-size: 1.8rem !important
+}

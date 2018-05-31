@@ -1,0 +1,45 @@
+.welcome {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: calc(50vh - 100px) auto;
+}
+
+.welcome h1 {
+    margin-bottom: 30px;
+}
+
+.content{
+    margin: 0;
+}
+
+.jumbotron{
+    color: white;
+}
+
+.theme-red{
+    background-color: #F44336
+}
+
+.theme-pink{
+    background-color: #E91E63
+}
+
+.theme-purple{
+    background-color: #9C27B0
+}
+
+.theme-deep-purple{
+    background-color: #673AB7
+}
+
+.theme-indigo{
+    background-color: #3F51B5
+}
+
+.theme-blue{
+    background-color: #2196F3
+}

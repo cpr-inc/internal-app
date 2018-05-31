@@ -1,14 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>InternalApp</title>
-  <base href="/">
+  <title>株式会社CPR</title>
+  <base href="./">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>株式会社CPR</title>
+
+<!-- Favicon-->
+<link rel="shortcut icon" href="http://cpr-inc.jp/cpr/wp-content/themes/twentythirteen_child/image/favicon.ico">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+<!-- Bootstrap Core Css 初期読み込みスピナー用-->
+<link href="./assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
 </head>
-<body>
-  <app-root></app-root>
+<body class="theme-indigo">
+  <app-root>
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+      <div class="loader">
+        <div class="preloader">
+          <div class="spinner-layer pl-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <p>お待ちください...</p>
+      </div>
+    </div>
+    <!-- #END# Page Loader -->    
+  </app-root>
+
+<!-- Jquery Core Js 読み込み前スピナー用 -->
+<script src="./assets/plugins/jquery/jquery.min.js"></script>
+
+<!-- SPINER 追加　初期読み込みのためこちらに必要-->
+<script src="./assets/plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
 </body>
 </html>

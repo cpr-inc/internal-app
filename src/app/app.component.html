@@ -1,20 +1,345 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+	<!-- Page Loader -->
+	<div class="page-loader-wrapper" [hidden]="!isloading">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<p>お待ちください...</p>
+		</div>
+	</div>
+	<!-- #END# Page Loader -->
+	<!-- Overlay For Sidebars -->
+	<div class="overlay"></div>
+	<!-- #END# Overlay For Sidebars -->
+	<!-- Search Bar -->
+	<div class="search-bar">
+		<div class="search-icon">
+			<i class="material-icons">search</i>
+		</div>
+		<input type="text" placeholder="入力してください...">
+		<div class="close-search">
+			<i class="material-icons">close</i>
+		</div>
+	</div>
+	<!-- #END# Search Bar -->
+	<!-- Top Bar -->
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="javascript:void(0);">株式会社CPR</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<!--
+                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    -->
+					<!-- #END# Call Search -->
+					<!-- Notifications -->
+					<!-- <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"> <i class="material-icons">notifications</i> <span class="label-count">7</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li class="header">通知</li>
+							<li class="body">
+								<ul class="menu">
+									<ng-container *ngFor="let Notify of NotificationsList; let i = index">
+										<li><a href="javascript:void(0);">
+											<div [ngClass]="SetNotifyClass(i)">
+												<i class="material-icons">{{Notify.icon}}</i>
+											</div>
+											<div class="menu-info">
+											<ng-container *ngIf="i != 3; else kosyou">
+												<h4>{{ Notify.message }}</h4>
+											</ng-container> 
+											<ng-template #kosyou>
+												<h4><span style="color: red;">タスクの期限が残りわずかです。</span></h4>
+											</ng-template>
+											<ng-container *ngIf="Notify.update_time">
+												<p>
+												<i class="material-icons">assignment</i>
+												{{ Notify.update_time }}
+												</p>
+											</ng-container>
+											<ng-container *ngIf="Notify.access_time">
+												<p>
+													<i class="material-icons">access_time</i>
+													{{ Notify.access_time }}
+												</p>
+											</ng-container>
+										</div>
+									</a></li>
+									</ng-container>
+								</ul>
+							</li>
+							<li class="footer"><a href="javascript:void(0);">全通知を表示する</a></li>
+						</ul></li> -->
+					<!-- #END# Notifications -->
+					<li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- #sidebar Bar -->
+	<section>
+		<!-- Left Sidebar -->
+		<aside id="leftsidebar" class="sidebar">
+			<!-- User Info -->
+			<div class="user-info tblMenu">
+				<div class="image">
+					<img src="./assets/images/user.png" width="48" height="48" alt="User" />
+				</div>
+				<div class="info-container">
+					<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+					<div class="email"></div>
+					<div class="dept"></div>
+					<div class="btn-group user-helper-dropdown">
+						<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+						<ul class="dropdown-menu pull-right">
+							<!-- <li><a href="javascript:void(0);"><i class="material-icons">person</i>プロファイル</a></li>
+							<li role="seperator" class="divider"></li>
+							<li><a href="javascript:void(0);" data-toggle="modal" data-target="#largeModal1"><i class="material-icons">group</i>組織・班選択</a></li>
+							<li role="seperator" class="divider"></li> -->
+							<li data-target="#updatePasswordModal" data-toggle="modal"><a href="javascript:void(0);"><i class="material-icons">vpn_key</i>パスワード変更</a></li>
+							<li role="seperator" class="divider"></li>
+							<li><a href="javascript:void(0);" (click)="logout()"><i class="material-icons">input</i>ログアウト</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- #User Info -->
+			<!-- Menu -->
+			<div class="menu">
+				<ul class="list">
+					<li class="header">メニュー</li>
+					<ng-container *ngFor="let item of LeftNavItems; let i = index;">
+						<li [class.active]="item.active">
+							<a href="javascript:void(0);" (click)="SetContent(item.name,i)">
+								<i class="material-icons">{{item.icon}}</i>
+								<span>{{item.name}}</span>
+							</a>
+						</li>
+					</ng-container>
+				</ul>
+			</div>
+			<!-- #Menu -->
+			<!-- Footer -->
+			<!-- #Footer -->
+		</aside>
+		<!-- #END# Left Sidebar -->
+		<!-- Right Sidebar -->
+		<aside id="rightsidebar" class="right-sidebar">
+			<ul class="nav nav-tabs tab-nav-right" role="tablist">
+				<li role="presentation" class="active"><a href="#skins" data-toggle="tab">表示色</a></li>
+<!-- 				<li role="presentation"><a href="#settings" data-toggle="tab">設定</a></li> -->
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+					<ul class="demo-choose-skin">
+						<li data-theme="red">
+							<div class="red"></div> <span>Red</span>
+						</li>
+						<li data-theme="pink">
+							<div class="pink"></div> <span>Pink</span>
+						</li>
+						<li data-theme="purple">
+							<div class="purple"></div> <span>Purple</span>
+						</li>
+						<li data-theme="deep-purple">
+							<div class="deep-purple"></div> <span>Deep Purple</span>
+						</li>
+						<li data-theme="indigo" class="active">
+							<div class="indigo"></div> <span>Indigo</span>
+						</li>
+						<li data-theme="blue">
+							<div class="blue"></div> <span>Blue</span>
+						</li>
+						<li data-theme="light-blue">
+							<div class="light-blue"></div> <span>Light Blue</span>
+						</li>
+						<li data-theme="cyan">
+							<div class="cyan"></div> <span>Cyan</span>
+						</li>
+						<li data-theme="teal">
+							<div class="teal"></div> <span>Teal</span>
+						</li>
+						<li data-theme="green">
+							<div class="green"></div> <span>Green</span>
+						</li>
+						<li data-theme="light-green">
+							<div class="light-green"></div> <span>Light Green</span>
+						</li>
+						<li data-theme="lime">
+							<div class="lime"></div> <span>Lime</span>
+						</li>
+						<li data-theme="yellow">
+							<div class="yellow"></div> <span>Yellow</span>
+						</li>
+						<li data-theme="amber">
+							<div class="amber"></div> <span>Amber</span>
+						</li>
+						<li data-theme="orange">
+							<div class="orange"></div> <span>Orange</span>
+						</li>
+						<li data-theme="deep-orange">
+							<div class="deep-orange"></div> <span>Deep Orange</span>
+						</li>
+						<li data-theme="brown">
+							<div class="brown"></div> <span>Brown</span>
+						</li>
+						<li data-theme="grey">
+							<div class="grey"></div> <span>Grey</span>
+						</li>
+						<li data-theme="blue-grey">
+							<div class="blue-grey"></div> <span>Blue Grey</span>
+						</li>
+						<li data-theme="black">
+							<div class="black"></div> <span>Black</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</aside>
+		<!-- #END# Right Sidebar -->
+	</section>
+	<!-- ==================================================================================================================================== -->
 
+	<div id="login" [hidden]="isloading">
+		<app-login></app-login>
+	</div>
+
+	<div id="content" [hidden]="isloading">
+		<ng-container [ngSwitch]="content">
+			<!-- 業務月報　表示完了 -->
+			<section *ngSwitchCase="'業務月報'" class="content">
+				<iframe id="geppo" src="https://docs.google.com/forms/d/e/1FAIpQLSd6jmm_Bo5K4DKi_Xrm6haclK6keJ4hMYokuXzcrlwqc6m3Ww/viewform?embedded=true" 
+					width="100%"
+					height="1600px"
+					frameborder="0"
+					marginheight="0" 
+					marginwidth="0">
+				</iframe>
+			</section>
+			<!-- 交通費精算　表示完了 -->
+			<section *ngSwitchCase="'交通費精算'" class="content">
+				<iframe id="kotuhi" src="https://docs.google.com/forms/d/e/1FAIpQLSf8MbAipsldnA8nymKkV_RYUWsfaI9DuLqRiSUfQ7NU084E4Q/viewform?embedded=true"
+					width="100%"
+					height="1700px"
+					frameborder="0"
+					marginheight="0"
+					marginwidth="0">
+				</iframe>
+			</section>
+			<app-todolist [userdata]="userdata" *ngSwitchCase="'TODOリスト'"></app-todolist>
+			<!-- ドキュメント　表示完了 -->
+			<section class="content" *ngSwitchCase="'ドキュメント'">
+				<div class="row clearfix">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="card_basis">
+						<div class="card">
+							<div class="header tblMenu">
+								<h2>
+									<span style="color: white">ドキュメント</span>
+								</h2>
+							</div>
+							<div class="body">
+								<a href="javascript:void(0);" title="2017-00048">各書類保管場所</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+			<!-- <app-userlist class="content" *ngSwitchCase="'ユーザ一覧'"></app-userlist> -->
+			<app-activeuser class="content" *ngSwitchCase="'ユーザ一覧'" [currentUser]="currentUser">
+
+			</app-activeuser>
+		</ng-container>
+	</div>
+
+    <section>
+		<div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header tblMenu" style="padding: 15px 15px 5px 15px;">
+                    <ul class="header-dropdown" style="float: right; margin-bottom: 0;">
+                      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons" style="font-size: 16pt; color: #FFFFFF;" title="閉じる" data-dismiss="modal">close</i>
+                      </a>
+                    </ul>
+                    <h4 class="modal-title" id="largeModalLabel" style="margin-bottom: 10px;">
+                      <span style="color: white;">パスワード設定</span>
+                    </h4>
+                  </div>
+                  <div class="modal-body">
+                    <table style="border: none; width: 100%;">
+                      <tbody>
+                        <tr>
+                          <td style="vertical-align: top;">
+                            <div class="card">
+                              <div class="body">
+                                <div class="dt_buttons" style="padding-bottom: 10px;">
+                                  <button type="button" class="btn btn-bg waves-effect" style="margin-right: 3px;" (click)="updatePassword()" [disabled]="passwordState()">パスワード変更</button>
+                                  <button type="button" class="btn btn-bg waves-effect" (click)="cancel()">キャンセル</button>
+                                  <span style="float: right; padding-right: 20px;">
+            <!-- 															<button type="button" class="btn btn-bg waves-effect" style="width: 80px;" data-dismiss="modal">閉じる</button> -->
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="body" id="search_body">
+                                  <table class="table table-bordered">
+                                      <tbody>										  
+                                        <tr>
+                                          <td class="tblMenu">
+                                            <span color="red">新しいパスワード</span>
+                                            <div class="help-info" style="font-size: 10px;">半角英数字8文字にしてください。</div>
+                                          </td>
+                                          <td colspan="4">
+                                            <div class="form-group" style="margin-bottom: 0;margin-top: 10px;">
+                                              <div class="form-line">
+                                                <input type="password" class="form-control no-resize auto-growth" placeholder="新しいパスワードを入力" [(ngModel)]="newPassword" (keyup)="inputPassword()">
+                                              </div>
+                                            </div>
+										  </td>
+										</tr>
+										<tr *ngIf="!passwordState1">
+											<td colspan="8">
+												<span class="text-danger">半角英数字のみで8文字以上にしてください。</span>
+											</td>
+										</tr>
+                                        <tr>
+                                          <td class="tblMenu">
+                                            もう一度入力してください。
+                                          </td>
+                                          <td colspan="4">
+                                            <div class="form-group" style="margin-bottom: 0;">
+                                              <div class="form-line">
+                                                <input type="password" class="form-control no-resize auto-growth" placeholder="もう一度入力してください。" [(ngModel)]="authPassword" (keyup)="checkPassword()">
+                                              </div>
+                                            </div>
+										  </td>
+										</tr>
+										<tr *ngIf="!passwordState2">
+											<td colspan="8">
+												<span class="text-danger">一致しません。</span>
+											</td>
+										</tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+		</section>

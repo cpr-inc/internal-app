@@ -27,9 +27,45 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/plugins/bootstrap/css/bootstrap.css",
+              "src/assets/plugins/node-waves/waves.css",
+              "src/assets/plugins/animate-css/animate.css",
+              "src/assets/plugins/multi-select/css/multi-select.css",
+              "src/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css",
+              "src/assets/plugins/bootstrap-select/css/bootstrap-select.min.css",
+              "src/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css",
+              "src/assets/css/style.css",
+              "src/assets/plugins/datepicker2/css/bootstrap-datepicker.css",
+              "src/assets/plugins/waitme/waitMe.css",
+              "src/assets/css/themes/all-themes.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/plugins/jquery/jquery.min.js",
+              "src/assets/plugins/bootstrap/js/bootstrap.js",
+              "src/assets/plugins/bootstrap-select/js/bootstrap-select.js",
+              "src/assets/plugins/jquery-slimscroll/jquery.slimscroll.js",
+              "src/assets/plugins/jquery/jquery-ui.min.js",
+              "src/assets/plugins/node-waves/waves.js",
+              "src/assets/plugins/jquery-datatable/jquery.dataTables.js",
+              "src/assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js",
+              "src/assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js",
+              "src/assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js",
+              "src/assets/plugins/jquery-datatable/extensions/export/jszip.min.js",
+              "src/assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js",
+              "src/assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js",
+              "src/assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js",
+              "src/assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js",
+              "src/assets/plugins/jquery-inputmask/jquery.inputmask.bundle.js",
+              "src/assets/plugins/autosize/autosize.js",
+              "src/assets/plugins/tinymce/tinymce.js",
+              "src/assets/plugins/momentjs/moment.js",
+              "src/assets/plugins/momentjs/moment-with-locales.js",
+              "src/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js",
+              "src/assets/js/admin.js",
+              "src/assets/js/pages/tables/jquery-datatable.js",
+              "src/assets/js/demo.js"
+            ]
           },
           "configurations": {
             "production": {
